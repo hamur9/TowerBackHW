@@ -1,10 +1,12 @@
-package main
+package convertion
 
-func NumberConversion(num int) (result int, errorCode string) {
+import (
+	"bashnya-hw2/constants"
+)
+
+func NumberConversion(num int) (result int, errorCode error) {
 	result = num
-	errorCode = ErrorOK
-
-	for result < 12307 {
+	for result < constants.MaxNumber {
 		if result < 0 {
 			result *= -1
 		} else if result%7 == 0 {
@@ -18,7 +20,7 @@ func NumberConversion(num int) (result int, errorCode string) {
 
 		if result%13 == 0 && result%9 == 0 {
 			result = 0
-			errorCode = ErrorService
+			errorCode = constants.ErrorService
 			break
 		} else {
 			result += 1

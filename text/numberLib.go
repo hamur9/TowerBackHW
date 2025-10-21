@@ -1,4 +1,4 @@
-package main
+package text
 
 type numberLibs struct {
 	units    map[int]string
