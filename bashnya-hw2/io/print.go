@@ -1,9 +1,12 @@
 package io
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func PrintResult(resultNum int, textResultNum string, errorCode error) {
-	if errorCode == nil {
+	if errors.Is(errorCode, nil) {
 		fmt.Printf("Result number: %d\n", resultNum)
 		fmt.Printf("Number translated into text: %s\n", textResultNum)
 	} else {

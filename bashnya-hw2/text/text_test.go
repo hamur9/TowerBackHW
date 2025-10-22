@@ -1,6 +1,10 @@
 package text
 
-import "testing"
+import (
+	"bashnya-hw2/constants"
+	"errors"
+	"testing"
+)
 
 func TestRemoveLeadAndEndSpaces(t *testing.T) {
 	testTable := []struct {
@@ -54,14 +58,16 @@ func TestNumToText(t *testing.T) {
 		{numberIn: 10000, textOut: "десять тысяч"},
 		{numberIn: 12345, textOut: "двенадцать тысяч триста сорок пять"},
 		{numberIn: 123456, textOut: "сто двадцать три тысячи четыреста пятьдесят шесть"},
+		{numberIn: -5, textOut: "минус пять"},
+		{numberIn: -1000000, textOut: ""},
 	}
 
 	for _, testCase := range testTable {
-		resultText := NumToText(testCase.numberIn)
+		resultText, errCode := NumToText(testCase.numberIn)
 
 		t.Logf("Calling NumToText(), result = %s\n", resultText)
 
-		if resultText != testCase.textOut {
+		if resultText != testCase.textOut && !errors.Is(errCode, constants.ErrorValue) {
 			t.Errorf("Incorrect num to textOut result.\nExpected:\nResult = %s\nLen = %d\nReceived:\nResult = %s\nLen = %d\n",
 				testCase.textOut, len(testCase.textOut), resultText, len(resultText))
 		}

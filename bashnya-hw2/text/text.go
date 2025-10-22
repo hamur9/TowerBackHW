@@ -1,8 +1,21 @@
 package text
 
-func NumToText(num int) (resultText string) {
+import (
+	"bashnya-hw2/constants"
+)
+
+func NumToText(num int) (resultText string, errCode error) {
+	if num > 999999 || num < -999999 {
+		return "", constants.ErrorValue
+	}
+
 	if num == 0 {
-		return "ноль"
+		return "ноль", nil
+	}
+
+	if num < 0 {
+		resultText += "минус "
+		num *= -1
 	}
 
 	lib := numberLibsGet()
