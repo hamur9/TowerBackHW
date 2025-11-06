@@ -5,6 +5,7 @@ tests_dir="./acceptance-tests/"
 input_dir="${tests_dir}input/"
 output_dir="${tests_dir}output/"
 user_dir="${tests_dir}user/"
+mkdir -p "$user_dir"
 path_to_bin="./uniq"
 # SETTINGS
 

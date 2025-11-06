@@ -5,7 +5,6 @@ import (
 	"io"
 	"log"
 	"os"
-	"path/filepath"
 )
 
 func main() {
@@ -29,9 +28,6 @@ func main() {
 	}
 
 	if outputPath != "" {
-		if err := os.MkdirAll(filepath.Dir(outputPath), 0755); err != nil {
-			log.Fatalf("не удалось создать директорию для выходного файла: %v", err)
-		}
 		f, e := os.Create(outputPath)
 		if e != nil {
 			log.Fatalf("не удалось создать выходной файл: %v", e)
