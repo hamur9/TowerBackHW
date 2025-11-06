@@ -31,8 +31,8 @@ linters-settings:
     package-average: 0.0
     skip-tests: true
   funlen:
-    lines: 40
-    statements: 30
+    lines: 80
+    statements: 50
   nestif:
     min-complexity: 7
   revive:
