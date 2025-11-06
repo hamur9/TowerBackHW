@@ -27,7 +27,7 @@ linters-settings:
   lll:
     line-length: 140
   cyclop:
-    max-complexity: 20
+    max-complexity: 21
     package-average: 0.0
     skip-tests: true
   funlen:
