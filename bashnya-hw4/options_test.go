@@ -17,7 +17,6 @@ func TestParseOptions_PositionalIO(t *testing.T) {
 }
 
 func TestParseOptions_ConflictingModes(t *testing.T) {
-	// -c и -d одновременно недопустимы.
 	_, _, _, err := ParseOptions([]string{"-c", "-d"})
 	if err == nil {
 		t.Fatalf("ожидали ошибку при конфликте режимов")

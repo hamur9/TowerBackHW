@@ -14,7 +14,6 @@ func TestKeyExtractor_IgnoreCase(t *testing.T) {
 func TestKeyExtractor_SkipFields_Basic(t *testing.T) {
 	opts := Options{SkipFields: 2}
 	k := NewKeyExtractor(opts)
-	// Пропускаем два поля, ключ должен начаться с третьего.
 	got := k.Extract("f1 f2 key rest")
 	if got != "key rest" {
 		t.Errorf("skipFields: ожидали 'key rest', получили %q", got)
@@ -31,7 +30,6 @@ func TestKeyExtractor_SkipChars_WithinLine(t *testing.T) {
 }
 
 func TestKeyExtractor_SkipChars_BeyondLine(t *testing.T) {
-	// Если после учёта -s ключ уходит за предел строки, должен вернуться пустой ключ.
 	opts := Options{SkipChars: 10}
 	k := NewKeyExtractor(opts)
 	got := k.Extract("abc")
@@ -41,11 +39,9 @@ func TestKeyExtractor_SkipChars_BeyondLine(t *testing.T) {
 }
 
 func TestKeyExtractor_FieldsThenChars(t *testing.T) {
-	// Сначала -f, потом -s.
 	opts := Options{SkipFields: 1, SkipChars: 2}
 	k := NewKeyExtractor(opts)
 	got := k.Extract("pfx KEY")
-	// после -f ключ-кандидат "KEY", затем -s=2 → "Y"
 	if got != "Y" {
 		t.Errorf("fields+chars: ожидали 'Y', получили %q", got)
 	}
